@@ -19,7 +19,7 @@ public class Item {
 		return sku;
 	}
 
-	public double getSubTotal(Item e) {
+	public double getSubTotal() {
 		return sku.getPrice() * (double) qunantity;
 	}
 

@@ -44,7 +44,7 @@ public class ShoppingCartTest
 	public void totalOfTwoSkuItems()
 	{
     	ShoppingCart cart =buildShoppingCart(new Item(2, Product.SKU_A), new Item(2, Product.SKU_B));
-    	assertEquals(160.0, cart.getTotal(), 0.0);
+    	assertEquals(145.0, cart.getTotal(), 0.0);
 	}
    
     @Test
@@ -65,9 +65,58 @@ public class ShoppingCartTest
 	public void test_getTotalOfMultiSkuPromotion() {
 		ShoppingCart cart = buildShoppingCart(new Item(3, Product.SKU_A), new Item(5, Product.SKU_B),
 				new Item(1, Product.SKU_C), new Item(2, Product.SKU_D));
-		assertEquals(45.0, cart.getTotal(), 0.0);
+		assertEquals(295.0, cart.getTotal(), 0.0);
 	}
     
+    @Test
+	public void totalOfThreeItemsFromSkuA()
+	{
+    	ShoppingCart cart = buildShoppingCart(new Item(3, Product.SKU_A));
+    	assertEquals(130.0, cart.getTotal(), 0.0);
+	}
+    
+    @Test
+	public void test_TotalCartValue_For_Scenario_A() {
+		ShoppingCart cart = buildShoppingCart(new Item(1, Product.SKU_A), new Item(1, Product.SKU_B),
+				new Item(1, Product.SKU_C));
+		assertEquals(100.0, cart.getTotal(), 0.0);
+	}
+    
+    @Test
+	public void test_TotalCartValue_For_Scenario_B() {
+		ShoppingCart cart = buildShoppingCart(new Item(5, Product.SKU_A), new Item(5, Product.SKU_B),
+				new Item(1, Product.SKU_C));
+		assertEquals(370.0, cart.getTotal(), 0.0);
+	}
+
+	@Test
+	public void test_TotalCartValue_For_Scenario_C() {
+
+		ShoppingCart cart = buildShoppingCart(new Item(3, Product.SKU_A), new Item(5, Product.SKU_B),
+				new Item(1, Product.SKU_C), new Item(1, Product.SKU_D));
+		assertEquals(280.0, cart.getTotal(), 0.0);
+	}
+
+	@Test
+	public void test_TotalCartValue_For_Scenario_D() {
+		ShoppingCart cart = buildShoppingCart(new Item(5, Product.SKU_A), new Item(5, Product.SKU_B),
+				new Item(3, Product.SKU_C), new Item(2, Product.SKU_D));
+		assertEquals(430.0, cart.getTotal(), 0.0);
+	}
+
+	@Test
+	public void test_TotalCartValue_For_Scenario_E() {
+		ShoppingCart cart = buildShoppingCart(new Item(1, Product.SKU_A), new Item(3, Product.SKU_B),
+				new Item(1, Product.SKU_C), new Item(2, Product.SKU_D));
+		assertEquals(170.0, cart.getTotal(), 0.0);
+	}
+
+	@Test
+	public void test_TotalCartValue_For_Scenario_G() {
+		ShoppingCart cart = buildShoppingCart(new Item(2, Product.SKU_C), new Item(1, Product.SKU_D));
+		assertEquals(50.0, cart.getTotal(), 0.0);
+	}
+	
     private ShoppingCart buildShoppingCart(Item... items) {
 		List<Item> itemList = new ArrayList<Item>();
 		itemList.addAll(Arrays.asList(items));
